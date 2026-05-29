@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>BEE POS v12 — บังหมัด</title>
-<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
   --green:#2d6a2d;--green2:#4a9a4a;--gold:#c8841a;--gold2:#e8a83a;
@@ -15,226 +16,7 @@
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--cream);color:var(--text);font-family:'Sarabun',sans-serif;max-width:480px;margin:0 auto;min-height:100vh;}
 
-/* LOGIN SCREEN */
-.login-screen{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  min-height:100vh;padding:30px 20px;
-  background:linear-gradient(160deg,#1a3d1a,#2d6a2d);
-}
-.login-logo{font-size:48px;margin-bottom:8px;}
-.login-title{font-size:28px;font-weight:700;color:#fff;margin-bottom:4px;}
-.login-sub{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:30px;}
-.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;width:100%;max-width:320px;margin-bottom:20px;}
-.role-btn{
-  padding:16px 12px;border-radius:14px;border:2px solid rgba(255,255,255,0.2);
-  background:rgba(255,255,255,0.1);color:#fff;cursor:pointer;
-  text-align:center;transition:all 0.2s;
-  font-family:'Sarabun',sans-serif;
-}
-.role-btn:hover{background:rgba(255,255,255,0.2);border-color:rgba(255,255,255,0.4);}
-.role-btn.active{background:var(--gold);border-color:var(--gold2);color:#fff;}
-.role-icon{font-size:24px;margin-bottom:4px;}
-.role-name{font-size:12px;font-weight:700;}
-.login-pass{
-  width:100%;max-width:320px;padding:12px 16px;
-  border:2px solid rgba(255,255,255,0.3);border-radius:12px;
-  background:rgba(255,255,255,0.1);color:#fff;font-size:16px;
-  text-align:center;font-family:'Sarabun',sans-serif;margin-bottom:12px;
-}
-.login-pass::placeholder{color:rgba(255,255,255,0.5);}
-.login-btn{
-  width:100%;max-width:320px;padding:14px;background:var(--gold);color:#fff;
-  border:none;border-radius:12px;font-size:16px;font-weight:700;
-  cursor:pointer;font-family:'Sarabun',sans-serif;
-}
-.login-err{color:#ffaaaa;font-size:12px;margin-top:8px;display:none;}
 
-/* TOP BAR */
-.topbar{
-  background:var(--dark);padding:10px 14px;
-  display:flex;align-items:center;justify-content:space-between;
-  position:sticky;top:0;z-index:100;
-}
-.topbar-left{display:flex;align-items:center;gap:8px;}
-.topbar-role{font-size:11px;color:var(--gold);font-weight:700;
-  background:rgba(200,132,26,0.15);border:1px solid rgba(200,132,26,0.3);
-  border-radius:8px;padding:2px 8px;}
-.topbar-store{font-size:13px;color:#fff;font-weight:600;}
-.topbar-logout{font-size:11px;color:var(--muted);cursor:pointer;
-  padding:4px 8px;border:1px solid #333;border-radius:6px;}
-
-/* SCREENS */
-.screen{display:none;padding:14px 12px 80px;}
-.screen.active{display:block;}
-
-/* SECTION HEADER */
-.sh{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:12px;
-  display:flex;align-items:center;gap:8px;}
-
-/* ── CUSTOMER SCREEN ── */
-.otype{display:flex;background:#fff;border-bottom:1px solid var(--border);}
-.otype-btn{flex:1;padding:11px 4px;text-align:center;font-size:12px;font-weight:700;
-  cursor:pointer;border:none;background:transparent;color:var(--muted);
-  border-bottom:3px solid transparent;font-family:'Sarabun',sans-serif;}
-.otype-btn.active{color:var(--green);border-bottom-color:var(--green);}
-.dform{background:#f8fff8;border-bottom:2px solid var(--border);padding:10px 14px;display:none;}
-.dform.show{display:block;}
-.dform label{font-size:11px;color:var(--muted);font-weight:700;display:block;margin-bottom:3px;}
-.dform input{width:100%;padding:9px 11px;border:1px solid var(--border);border-radius:9px;
-  font-size:13px;font-family:'Sarabun',sans-serif;background:#fff;margin-bottom:8px;}
-.tabs-wrap{background:#fff;border-bottom:2px solid var(--border);
-  position:sticky;top:44px;z-index:90;}
-.tabs{display:flex;overflow-x:auto;padding:0 4px;scrollbar-width:none;}
-.tabs::-webkit-scrollbar{display:none;}
-.tab{padding:11px 13px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;
-  white-space:nowrap;border-bottom:3px solid transparent;transition:all 0.2s;flex-shrink:0;}
-.tab.active{color:var(--green);border-bottom-color:var(--green);}
-.sec{display:none;}.sec.active{display:block;}
-.sec-title{font-size:16px;font-weight:700;color:var(--dark);margin-bottom:2px;}
-.sec-sub{font-size:10px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;margin-bottom:10px;}
-.mc{background:#fff;border:1px solid var(--border);border-radius:11px;margin-bottom:8px;
-  display:flex;align-items:stretch;overflow:hidden;transition:box-shadow 0.15s;}
-.mc:hover{box-shadow:0 3px 12px rgba(45,106,45,0.1);}
-.mc.unavail{opacity:0.4;}
-.mc-emoji{width:78px;min-height:78px;background:linear-gradient(135deg,#e8f4e8,#d4ebd4);
-  display:flex;align-items:center;justify-content:center;font-size:28px;flex-shrink:0;}
-.mc-info{padding:9px 10px 8px;flex:1;}
-.mc-name{font-size:12px;font-weight:700;color:var(--dark);line-height:1.3;}
-.mc-th{font-size:11px;color:var(--muted);margin-bottom:4px;}
-.mc-bottom{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
-.mc-price{font-size:14px;font-weight:700;color:var(--gold);}
-.badge{font-size:9px;padding:2px 6px;border-radius:6px;font-weight:700;}
-.b-hot{background:#fff0e8;color:#c0401a;}.b-pop{background:#e8f4e8;color:#1a6b1a;}
-.b-new{background:#fff8e0;color:#b87820;}
-.sold-tag{font-size:10px;color:var(--red);background:#fff0ee;padding:2px 6px;border-radius:5px;font-weight:700;}
-.stock-tag{font-size:10px;color:var(--muted);background:#f5f5f0;padding:2px 6px;border-radius:5px;}
-.qty-row{display:flex;align-items:center;gap:0;}
-.qbtn{width:26px;height:26px;border-radius:7px;border:1.5px solid var(--border);
-  background:#fff;color:var(--text);font-size:15px;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;font-weight:700;}
-.qbtn.plus{background:var(--green);color:#fff;border-color:var(--green);}
-.qnum{width:30px;text-align:center;font-size:13px;font-weight:700;}
-.cart-bar{position:fixed;bottom:0;left:50%;transform:translateX(-50%);
-  width:100%;max-width:480px;background:var(--dark);padding:12px 16px;
-  z-index:200;display:none;}
-.cart-bar.show{display:block;}
-.cart-inner{display:flex;align-items:center;justify-content:space-between;}
-.cart-info{color:#fff;}
-.cart-count{font-size:11px;color:rgba(255,255,255,0.65);}
-.cart-total{font-size:17px;font-weight:700;color:var(--gold2);}
-.cart-btn{background:var(--green);color:#fff;border:none;border-radius:9px;
-  padding:9px 18px;font-size:13px;font-weight:700;cursor:pointer;
-  font-family:'Sarabun',sans-serif;}
-
-/* ── KITCHEN SCREEN ── */
-.order-queue{display:flex;flex-direction:column;gap:10px;}
-.order-card{background:#fff;border:2px solid var(--border);border-radius:14px;padding:14px;
-  position:relative;}
-.order-card.new-order{border-color:var(--red);animation:pulse 1s ease-in-out 3;}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(192,57,43,0.3);}
-  50%{box-shadow:0 0 0 8px rgba(192,57,43,0);}}
-.order-card.in-progress{border-color:var(--orange);}
-.order-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.order-num{font-size:18px;font-weight:700;color:var(--dark);}
-.order-type-badge{font-size:10px;padding:3px 8px;border-radius:8px;font-weight:700;}
-.ob-dine{background:#e8f4e8;color:var(--green);}
-.ob-delivery{background:#fff0e8;color:var(--orange);}
-.ob-pickup{background:#e8e8ff;color:var(--blue);}
-.order-time{font-size:11px;color:var(--muted);}
-.order-items{margin-bottom:12px;}
-.order-item-row{display:flex;align-items:center;gap:8px;padding:4px 0;
-  border-bottom:1px solid var(--border);font-size:13px;}
-.order-item-row:last-child{border-bottom:none;}
-.oitem-qty{font-weight:700;color:var(--green);width:24px;}
-.oitem-name{flex:1;}
-.kitchen-actions{display:flex;gap:8px;}
-.kbtn{flex:1;padding:10px;border:none;border-radius:10px;font-size:13px;font-weight:700;
-  cursor:pointer;font-family:'Sarabun',sans-serif;}
-.kbtn-start{background:var(--orange);color:#fff;}
-.kbtn-done{background:var(--green);color:#fff;}
-.kbtn-done-only{background:var(--green);color:#fff;width:100%;}
-.empty-queue{text-align:center;padding:40px 20px;color:var(--muted);}
-.empty-queue .eq-icon{font-size:48px;margin-bottom:12px;}
-.status-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
-.dot-red{background:var(--red);}.dot-orange{background:var(--orange);}
-.dot-green{background:var(--green);}
-
-/* ── COUNTER SCREEN ── */
-.cash-summary{background:#fff;border:1px solid var(--border);border-radius:14px;padding:16px;margin-bottom:14px;}
-.cash-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;
-  border-bottom:1px solid var(--border);}
-.cash-row:last-child{border-bottom:none;}
-.cash-label{font-size:13px;color:var(--muted);}
-.cash-val{font-size:16px;font-weight:700;color:var(--dark);}
-.cash-val.green{color:var(--green);}
-.cash-val.red{color:var(--red);}
-.counter-orders{display:flex;flex-direction:column;gap:10px;}
-.counter-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:12px;}
-.counter-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.counter-total{font-size:18px;font-weight:700;color:var(--gold);}
-.pay-row{display:flex;gap:8px;margin-top:10px;}
-.pay-cash-btn{flex:1;padding:10px;background:var(--green);color:#fff;border:none;
-  border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Sarabun',sans-serif;}
-.pay-qr-btn{flex:1;padding:10px;background:var(--blue);color:#fff;border:none;
-  border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Sarabun',sans-serif;}
-.cash-input-row{display:flex;gap:8px;margin-top:8px;align-items:center;}
-.cash-input{flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;
-  font-size:15px;font-family:'Sarabun',sans-serif;text-align:right;}
-.change-display{font-size:13px;color:var(--green);font-weight:700;text-align:right;
-  margin-top:4px;}
-
-/* ── OWNER DASHBOARD ── */
-.stat-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
-.stat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;}
-.stat-label{font-size:11px;color:var(--muted);margin-bottom:4px;}
-.stat-val{font-size:22px;font-weight:700;color:var(--dark);}
-.stat-val.green{color:var(--green);}
-.stat-val.gold{color:var(--gold);}
-.stat-val.red{color:var(--red);}
-.stat-sub{font-size:10px;color:var(--muted);margin-top:2px;}
-.menu-rank{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;}
-.rank-row{display:flex;align-items:center;gap:10px;padding:6px 0;
-  border-bottom:1px solid var(--border);}
-.rank-row:last-child{border-bottom:none;}
-.rank-num{font-size:14px;font-weight:700;color:var(--muted);width:20px;}
-.rank-name{flex:1;font-size:13px;font-weight:600;}
-.rank-count{font-size:13px;color:var(--gold);font-weight:700;}
-.stock-alerts{background:#fff;border:1px solid var(--border);border-radius:12px;padding:14px;margin-bottom:12px;}
-.alert-row{display:flex;align-items:center;gap:8px;padding:6px 0;
-  border-bottom:1px solid var(--border);font-size:13px;}
-.alert-row:last-child{border-bottom:none;}
-.alert-icon{font-size:16px;}
-.alert-name{flex:1;}
-.alert-stock{font-weight:700;color:var(--red);}
-.report-btn{width:100%;padding:13px;background:var(--green);color:#fff;border:none;
-  border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;
-  font-family:'Sarabun',sans-serif;margin-bottom:10px;}
-.report-btn.outline{background:transparent;color:var(--green);
-  border:2px solid var(--green);}
-
-/* ── MATERIAL STOCK ── */
-.material-card{background:#fff;border:1px solid var(--border);border-radius:12px;
-  padding:12px;margin-bottom:8px;}
-.mat-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.mat-name{font-size:14px;font-weight:700;}
-.mat-stock{font-size:13px;color:var(--muted);}
-.mat-bar-bg{background:#eee;border-radius:4px;height:8px;margin-bottom:8px;}
-.mat-bar{height:8px;border-radius:4px;background:var(--green);transition:width 0.3s;}
-.mat-bar.warn{background:var(--orange);}
-.mat-bar.danger{background:var(--red);}
-.mat-actions{display:flex;gap:6px;}
-.mat-btn{padding:6px 12px;border-radius:8px;font-size:12px;font-weight:700;
-  cursor:pointer;font-family:'Sarabun',sans-serif;border:1.5px solid var(--border);}
-.mat-btn-add{background:var(--green);color:#fff;border-color:var(--green);}
-.add-material-form{background:#fff;border:2px dashed var(--green);border-radius:12px;
-  padding:14px;margin-bottom:10px;}
-.mf-row{display:flex;gap:8px;margin-bottom:8px;}
-.mf-input{flex:1;padding:9px 10px;border:1px solid var(--border);border-radius:8px;
-  font-size:13px;font-family:'Sarabun',sans-serif;}
-.mf-btn{padding:9px 16px;background:var(--green);color:#fff;border:none;border-radius:8px;
-  font-size:13px;font-weight:700;cursor:pointer;font-family:'Sarabun',sans-serif;}
-
-/* ── OVERLAY ── */
 .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:300;
   align-items:flex-end;justify-content:center;}
 .overlay.open{display:flex;}
@@ -292,253 +74,221 @@ body{background:var(--cream);color:var(--text);font-family:'Sarabun',sans-serif;
 .status-bar{background:#1a4a1a;color:#90ee90;text-align:center;font-size:11px;padding:4px;}
 
 
+
 </style>
 </head>
 <body>
-    <div class="login-title">Bangmad Dashboard</div>
-    <div class="login-sub">허니비 전용 대시보드</div>
-    <div class="login-input-wrap">
-      <input class="login-input" id="login-pw" type="password" placeholder="비밀번호 입력" autocomplete="off" />
-    </div>
-    <button class="login-btn" onclick="checkLogin()">로그인</button>
-    <div class="login-error" id="login-error"></div>
-    <div class="login-attempts" id="login-attempts"></div>
-  </div>
-</div>
-
 
 <!-- STATUS BAR -->
 <div class="status-bar" id="status-bar">🔄 연결 중...</div>
-
 <!-- LOGIN SCREEN -->
-<div id="login-screen" class="login-screen">
-  <div class="login-logo">🐝</div>
-  <div class="login-title">BEE POS</div>
-  <div class="login-sub">บังหมัด อาหารตามสั่ง</div>
-  <div class="role-grid">
-    <div class="role-btn" onclick="selectRole('customer')" id="role-customer">
-      <div class="role-icon">📱</div>
-      <div class="role-name">ลูกค้า<br>Customer</div>
-    </div>
-    <div class="role-btn" onclick="selectRole('owner')" id="role-owner">
-      <div class="role-icon">👑</div>
-      <div class="role-name">เจ้าของ<br>Owner</div>
-    </div>
-    <div class="role-btn" onclick="selectRole('kitchen')" id="role-kitchen">
-      <div class="role-icon">🍳</div>
-      <div class="role-name">ครัว<br>Kitchen</div>
-    </div>
-    <div class="role-btn" onclick="selectRole('counter')" id="role-counter">
-      <div class="role-icon">💰</div>
-      <div class="role-name">แคชเชียร์<br>Counter</div>
-    </div>
-  </div>
-  <input type="password" class="login-pass" id="login-pass" placeholder="รหัสผ่าน (Password)" onkeydown="if(event.key==='Enter')doLogin()"/>
-  <button class="login-btn" onclick="doLogin()">เข้าสู่ระบบ</button>
-  <div class="login-err" id="login-err">รหัสผ่านไม่ถูกต้อง</div>
+<div class="login-screen" id="login-screen">
+<div class="login-logo">🐝</div>
+<div class="login-title">BEE POS</div>
+<div class="login-sub">บังหมัด อาหารตามสั่ง</div>
+<div class="role-grid">
+<div class="role-btn" id="role-customer" onclick="selectRole('customer')">
+<div class="role-icon">📱</div>
+<div class="role-name">ลูกค้า<br/>Customer</div>
 </div>
-
+<div class="role-btn" id="role-owner" onclick="selectRole('owner')">
+<div class="role-icon">👑</div>
+<div class="role-name">เจ้าของ<br/>Owner</div>
+</div>
+<div class="role-btn" id="role-kitchen" onclick="selectRole('kitchen')">
+<div class="role-icon">🍳</div>
+<div class="role-name">ครัว<br/>Kitchen</div>
+</div>
+<div class="role-btn" id="role-counter" onclick="selectRole('counter')">
+<div class="role-icon">💰</div>
+<div class="role-name">แคชเชียร์<br/>Counter</div>
+</div>
+</div>
+<input class="login-pass" id="login-pass" onkeydown="if(event.key==='Enter')doLogin()" placeholder="รหัสผ่าน (Password)" type="password"/>
+<button class="login-btn" onclick="doLogin()">เข้าสู่ระบบ</button>
+<div class="login-err" id="login-err">รหัสผ่านไม่ถูกต้อง</div>
+</div>
 <!-- TOP BAR -->
-<div id="topbar" class="topbar" style="display:none">
-  <div class="topbar-left">
-    <span class="topbar-role" id="topbar-role">-</span>
-    <span class="topbar-store">บังหมัด</span>
-  </div>
-  <span class="topbar-logout" onclick="doLogout()">ออก</span>
+<div class="topbar" id="topbar" style="display:none">
+<div class="topbar-left">
+<span class="topbar-role" id="topbar-role">-</span>
+<span class="topbar-store">บังหมัด</span>
 </div>
-
+<span class="topbar-logout" onclick="doLogout()">ออก</span>
+</div>
 <!-- CUSTOMER SCREEN -->
-<div id="screen-customer" class="screen">
-  <div class="otype" style="position:sticky;top:44px;z-index:90;background:#fff;">
-    <button class="otype-btn active" onclick="setType('dine',this)">🪑 ทานที่ร้าน</button>
-    <button class="otype-btn" onclick="setType('delivery',this)">🛵 สั่งส่ง</button>
-    <button class="otype-btn" onclick="setType('pickup',this)">🛍️ รับเอง</button>
-  </div>
-  <div class="dform" id="dform">
-    <label>ชื่อ</label><input id="d-name" placeholder="ชื่อของคุณ"/>
-    <label>ที่อยู่</label><input id="d-addr" placeholder="ที่อยู่จัดส่ง"/>
-    <label>โทร</label><input id="d-phone" placeholder="เบอร์โทร" type="tel"/>
-  </div>
-  <div class="tabs-wrap">
-    <div class="tabs" id="cust-tabs"></div>
-  </div>
-  <div style="padding:12px 12px 100px" id="cust-menu"></div>
-  <div class="cart-bar" id="cart-bar">
-    <div class="cart-inner">
-      <div class="cart-info">
-        <div class="cart-count" id="cart-count">0 รายการ</div>
-        <div class="cart-total" id="cart-total">฿0</div>
-      </div>
-      <button class="cart-btn" onclick="openOrder()">ดูคำสั่งซื้อ →</button>
-    </div>
-  </div>
+<div class="screen" id="screen-customer">
+<div class="otype" style="position:sticky;top:44px;z-index:90;background:#fff;">
+<button class="otype-btn active" onclick="setType('dine',this)">🪑 ทานที่ร้าน</button>
+<button class="otype-btn" onclick="setType('delivery',this)">🛵 สั่งส่ง</button>
+<button class="otype-btn" onclick="setType('pickup',this)">🛍️ รับเอง</button>
 </div>
-
+<div class="dform" id="dform">
+<label>ชื่อ</label><input id="d-name" placeholder="ชื่อของคุณ"/>
+<label>ที่อยู่</label><input id="d-addr" placeholder="ที่อยู่จัดส่ง"/>
+<label>โทร</label><input id="d-phone" placeholder="เบอร์โทร" type="tel"/>
+</div>
+<div class="tabs-wrap">
+<div class="tabs" id="cust-tabs"></div>
+</div>
+<div id="cust-menu" style="padding:12px 12px 100px"></div>
+<div class="cart-bar" id="cart-bar">
+<div class="cart-inner">
+<div class="cart-info">
+<div class="cart-count" id="cart-count">0 รายการ</div>
+<div class="cart-total" id="cart-total">฿0</div>
+</div>
+<button class="cart-btn" onclick="openOrder()">ดูคำสั่งซื้อ →</button>
+</div>
+</div>
+</div>
 <!-- KITCHEN SCREEN -->
-<div id="screen-kitchen" class="screen" style="padding-bottom:70px">
-  <div class="sh">🍳 คิวออเดอร์ <span id="queue-count" style="font-size:12px;color:var(--muted);font-weight:400"></span></div>
-  <div class="order-queue" id="kitchen-queue"></div>
+<div class="screen" id="screen-kitchen" style="padding-bottom:70px">
+<div class="sh">🍳 คิวออเดอร์ <span id="queue-count" style="font-size:12px;color:var(--muted);font-weight:400"></span></div>
+<div class="order-queue" id="kitchen-queue"></div>
 </div>
-
 <!-- COUNTER SCREEN -->
-<div id="screen-counter" class="screen" style="padding-bottom:70px">
-  <div class="sh">💰 Counter / แคชเชียร์</div>
-
-  <!-- CASH SUMMARY -->
-  <div class="cash-summary">
-    <div class="cash-row">
-      <span class="cash-label">💵 เงินสดเริ่มต้น</span>
-      <div style="display:flex;align-items:center;gap:6px">
-        <input type="number" id="cash-start-input" value="1000"
-          style="width:90px;padding:5px 8px;border:1px solid var(--border);border-radius:7px;
-          font-size:13px;font-family:'Sarabun',sans-serif;text-align:right"
-          onchange="updateCashStart(this.value)"/>
-        <span style="font-size:12px;color:var(--muted)">฿</span>
-      </div>
-    </div>
-    <div class="cash-row">
-      <span class="cash-label">📥 รับเงินสด</span>
-      <span class="cash-val green" id="cash-in">฿0</span>
-    </div>
-    <div class="cash-row">
-      <span class="cash-label">📱 QR/PromptPay</span>
-      <span class="cash-val green" id="cash-qr">฿0</span>
-    </div>
-    <div class="cash-row" style="background:#f8fff8;border-radius:8px;padding:8px 4px;margin-top:4px">
-      <span class="cash-label" style="font-weight:700">💰 ยอดรวมวันนี้</span>
-      <span class="cash-val" id="cash-total-day" style="color:var(--gold);font-size:20px">฿0</span>
-    </div>
-  </div>
-
-  <!-- QUICK CASH ORDER -->
-  <div style="background:#fff;border:2px dashed var(--green);border-radius:12px;padding:14px;margin-bottom:14px">
-    <div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px">
+<div class="screen" id="screen-counter" style="padding-bottom:70px">
+<div class="sh">💰 Counter / แคชเชียร์</div>
+<!-- CASH SUMMARY -->
+<div class="cash-summary">
+<div class="cash-row">
+<span class="cash-label">💵 เงินสดเริ่มต้น</span>
+<div style="display:flex;align-items:center;gap:6px">
+<input id="cash-start-input" onchange="updateCashStart(this.value)" style="width:90px;padding:5px 8px;border:1px solid var(--border);border-radius:7px;
+          font-size:13px;font-family:'Sarabun',sans-serif;text-align:right" type="number" value="1000"/>
+<span style="font-size:12px;color:var(--muted)">฿</span>
+</div>
+</div>
+<div class="cash-row">
+<span class="cash-label">📥 รับเงินสด</span>
+<span class="cash-val green" id="cash-in">฿0</span>
+</div>
+<div class="cash-row">
+<span class="cash-label">📱 QR/PromptPay</span>
+<span class="cash-val green" id="cash-qr">฿0</span>
+</div>
+<div class="cash-row" style="background:#f8fff8;border-radius:8px;padding:8px 4px;margin-top:4px">
+<span class="cash-label" style="font-weight:700">💰 ยอดรวมวันนี้</span>
+<span class="cash-val" id="cash-total-day" style="color:var(--gold);font-size:20px">฿0</span>
+</div>
+</div>
+<!-- QUICK CASH ORDER -->
+<div style="background:#fff;border:2px dashed var(--green);border-radius:12px;padding:14px;margin-bottom:14px">
+<div style="font-size:13px;font-weight:700;color:var(--green);margin-bottom:10px">
       ➕ บันทึกการรับเงิน
     </div>
-    <div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
-      <span style="font-size:13px;color:var(--muted);flex-shrink:0">ยอด ฿</span>
-      <input type="number" id="quick-amount" placeholder="0"
-        style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;
-        font-size:16px;font-family:'Sarabun',sans-serif;text-align:right"
-        oninput="calcQuickChange()"/>
-      <span style="font-size:13px;color:var(--muted);flex-shrink:0">รับมา ฿</span>
-      <input type="number" id="quick-recv" placeholder="0"
-        style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;
-        font-size:16px;font-family:'Sarabun',sans-serif;text-align:right"
-        oninput="calcQuickChange()"/>
-    </div>
-    <div id="quick-change" style="text-align:right;font-size:14px;font-weight:700;
+<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px">
+<span style="font-size:13px;color:var(--muted);flex-shrink:0">ยอด ฿</span>
+<input id="quick-amount" oninput="calcQuickChange()" placeholder="0" style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;
+        font-size:16px;font-family:'Sarabun',sans-serif;text-align:right" type="number"/>
+<span style="font-size:13px;color:var(--muted);flex-shrink:0">รับมา ฿</span>
+<input id="quick-recv" oninput="calcQuickChange()" placeholder="0" style="flex:1;padding:10px;border:1px solid var(--border);border-radius:9px;
+        font-size:16px;font-family:'Sarabun',sans-serif;text-align:right" type="number"/>
+</div>
+<div id="quick-change" style="text-align:right;font-size:14px;font-weight:700;
       color:var(--green);margin-bottom:8px;min-height:20px"></div>
-    <div style="display:flex;gap:8px">
-      <button onclick="quickCashPay()"
-        style="flex:1;padding:11px;background:var(--green);color:#fff;border:none;
+<div style="display:flex;gap:8px">
+<button onclick="quickCashPay()" style="flex:1;padding:11px;background:var(--green);color:#fff;border:none;
         border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
         font-family:'Sarabun',sans-serif">💵 เงินสด</button>
-      <button onclick="quickQrPay()"
-        style="flex:1;padding:11px;background:var(--blue);color:#fff;border:none;
+<button onclick="quickQrPay()" style="flex:1;padding:11px;background:var(--blue);color:#fff;border:none;
         border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;
         font-family:'Sarabun',sans-serif">📱 QR จ่ายแล้ว</button>
-    </div>
-  </div>
-
-  <!-- PENDING ORDERS FROM APP -->
-  <div class="sh">📋 รายการรอชำระจากแอป</div>
-  <div class="counter-orders" id="counter-orders">
-    <div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">
+</div>
+</div>
+<!-- PENDING ORDERS FROM APP -->
+<div class="sh">📋 รายการรอชำระจากแอป</div>
+<div class="counter-orders" id="counter-orders">
+<div style="text-align:center;color:var(--muted);padding:20px;font-size:13px">
       ไม่มีรายการรอชำระ
     </div>
-  </div>
 </div>
-
+</div>
 <!-- OWNER SCREEN -->
-<div id="screen-owner" class="screen" style="padding-bottom:70px">
-  <div class="sh">📊 แดชบอร์ดวันนี้</div>
-  <div class="stat-grid">
-    <div class="stat-card">
-      <div class="stat-label">💰 ยอดขายรวม</div>
-      <div class="stat-val gold" id="ow-total">฿0</div>
-      <div class="stat-sub" id="ow-orders">0 รายการ</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">📱 QR/PromptPay</div>
-      <div class="stat-val green" id="ow-qr">฿0</div>
-      <div class="stat-sub" id="ow-cash-sub">เงินสด: ฿0</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">🏆 เมนูขายดี</div>
-      <div class="stat-val" id="ow-top" style="font-size:14px">-</div>
-      <div class="stat-sub" id="ow-top-count">-</div>
-    </div>
-    <div class="stat-card">
-      <div class="stat-label">⚠️ สต็อกใกล้หมด</div>
-      <div class="stat-val red" id="ow-alerts">0</div>
-      <div class="stat-sub">รายการ</div>
-    </div>
-  </div>
-  <div class="menu-rank">
-    <div class="sh" style="margin-bottom:8px">🏆 เมนูขายดีวันนี้</div>
-    <div id="ow-rank-list"><div style="color:var(--muted);font-size:13px;padding:8px 0">ยังไม่มีข้อมูล</div></div>
-  </div>
-  <div class="stock-alerts" id="ow-stock-alerts-box">
-    <div class="sh" style="margin-bottom:8px">📦 สต็อกเตือน</div>
-    <div id="ow-stock-list"><div style="color:var(--muted);font-size:13px;padding:8px 0">สต็อกปกติ ✅</div></div>
-  </div>
-  <button class="report-btn" onclick="sendDailyReport()">📊 ส่งรายงานไป Line</button>
-  <button class="report-btn outline" onclick="showOwnerTab('stock')">📦 จัดการสต็อกวัตถุดิบ</button>
+<div class="screen" id="screen-owner" style="padding-bottom:70px">
+<div class="sh">📊 แดชบอร์ดวันนี้</div>
+<div class="stat-grid">
+<div class="stat-card">
+<div class="stat-label">💰 ยอดขายรวม</div>
+<div class="stat-val gold" id="ow-total">฿0</div>
+<div class="stat-sub" id="ow-orders">0 รายการ</div>
 </div>
-
+<div class="stat-card">
+<div class="stat-label">📱 QR/PromptPay</div>
+<div class="stat-val green" id="ow-qr">฿0</div>
+<div class="stat-sub" id="ow-cash-sub">เงินสด: ฿0</div>
+</div>
+<div class="stat-card">
+<div class="stat-label">🏆 เมนูขายดี</div>
+<div class="stat-val" id="ow-top" style="font-size:14px">-</div>
+<div class="stat-sub" id="ow-top-count">-</div>
+</div>
+<div class="stat-card">
+<div class="stat-label">⚠️ สต็อกใกล้หมด</div>
+<div class="stat-val red" id="ow-alerts">0</div>
+<div class="stat-sub">รายการ</div>
+</div>
+</div>
+<div class="menu-rank">
+<div class="sh" style="margin-bottom:8px">🏆 เมนูขายดีวันนี้</div>
+<div id="ow-rank-list"><div style="color:var(--muted);font-size:13px;padding:8px 0">ยังไม่มีข้อมูล</div></div>
+</div>
+<div class="stock-alerts" id="ow-stock-alerts-box">
+<div class="sh" style="margin-bottom:8px">📦 สต็อกเตือน</div>
+<div id="ow-stock-list"><div style="color:var(--muted);font-size:13px;padding:8px 0">สต็อกปกติ ✅</div></div>
+</div>
+<button class="report-btn" onclick="sendDailyReport()">📊 ส่งรายงานไป Line</button>
+<button class="report-btn outline" onclick="showOwnerTab('stock')">📦 จัดการสต็อกวัตถุดิบ</button>
+</div>
 <!-- MENU MANAGE SCREEN -->
-<div id="screen-menu-manage" class="screen" style="padding-bottom:70px">
-  <div class="sh">🍽️ จัดการเมนู</div>
-  <div id="menu-manage-list"></div>
-  <button class="report-btn outline" onclick="showOwnerTab('dashboard')" style="margin-top:4px">← กลับ</button>
+<div class="screen" id="screen-menu-manage" style="padding-bottom:70px">
+<div class="sh">🍽️ จัดการเมนู</div>
+<div id="menu-manage-list"></div>
+<button class="report-btn outline" onclick="showOwnerTab('dashboard')" style="margin-top:4px">← กลับ</button>
 </div>
-
 <!-- STOCK SCREEN (owner sub) -->
-<div id="screen-stock" class="screen" style="padding-bottom:70px">
-  <div class="sh">📦 วัตถุดิบ (Materials)</div>
-  <div class="add-material-form">
-    <div style="font-size:13px;font-weight:700;margin-bottom:10px;color:var(--green)">+ เพิ่มวัตถุดิบ</div>
-    <div class="mf-row">
-      <input class="mf-input" id="mat-name" placeholder="ชื่อวัตถุดิบ เช่น ไก่"/>
-      <input class="mf-input" id="mat-unit" placeholder="หน่วย เช่น kg" style="width:80px;flex:none"/>
-    </div>
-    <div class="mf-row">
-      <input class="mf-input" type="number" id="mat-qty" placeholder="จำนวน"/>
-      <input class="mf-input" type="number" id="mat-min" placeholder="ขั้นต่ำ (แจ้งเตือน)"/>
-      <button class="mf-btn" onclick="addMaterial()">เพิ่ม</button>
-    </div>
-  </div>
-  <div id="mat-list"></div>
-  <button class="report-btn outline" onclick="showOwnerTab('dashboard')" style="margin-top:4px">← กลับแดชบอร์ด</button>
+<div class="screen" id="screen-stock" style="padding-bottom:70px">
+<div class="sh">📦 วัตถุดิบ (Materials)</div>
+<div class="add-material-form">
+<div style="font-size:13px;font-weight:700;margin-bottom:10px;color:var(--green)">+ เพิ่มวัตถุดิบ</div>
+<div class="mf-row">
+<input class="mf-input" id="mat-name" placeholder="ชื่อวัตถุดิบ เช่น ไก่"/>
+<input class="mf-input" id="mat-unit" placeholder="หน่วย เช่น kg" style="width:80px;flex:none"/>
 </div>
-
+<div class="mf-row">
+<input class="mf-input" id="mat-qty" placeholder="จำนวน" type="number"/>
+<input class="mf-input" id="mat-min" placeholder="ขั้นต่ำ (แจ้งเตือน)" type="number"/>
+<button class="mf-btn" onclick="addMaterial()">เพิ่ม</button>
+</div>
+</div>
+<div id="mat-list"></div>
+<button class="report-btn outline" onclick="showOwnerTab('dashboard')" style="margin-top:4px">← กลับแดชบอร์ด</button>
+</div>
 <!-- ORDER OVERLAY -->
 <div class="overlay" id="order-overlay" onclick="if(event.target===this)closeOrder()">
-  <div class="sheet"><div id="order-view"></div></div>
+<div class="sheet"><div id="order-view"></div></div>
 </div>
-
 <!-- BOTTOM NAV -->
 <div class="bnav" id="bnav-kitchen">
-  <button class="bnav-btn active" onclick="switchKitchenTab('queue')">
-    <div class="bnav-icon">📋</div><span class="bnav-label">คิว</span>
-  </button>
-  <button class="bnav-btn" onclick="switchKitchenTab('done')">
-    <div class="bnav-icon">✅</div><span class="bnav-label">เสร็จแล้ว</span>
-  </button>
+<button class="bnav-btn active" onclick="switchKitchenTab('queue')">
+<div class="bnav-icon">📋</div><span class="bnav-label">คิว</span>
+</button>
+<button class="bnav-btn" onclick="switchKitchenTab('done')">
+<div class="bnav-icon">✅</div><span class="bnav-label">เสร็จแล้ว</span>
+</button>
 </div>
 <div class="bnav" id="bnav-owner">
-  <button class="bnav-btn active" id="onav-dashboard" onclick="showOwnerTab('dashboard')">
-    <div class="bnav-icon">📊</div><span class="bnav-label">แดชบอร์ด</span>
-  </button>
-  <button class="bnav-btn" id="onav-stock" onclick="showOwnerTab('stock')">
-    <div class="bnav-icon">📦</div><span class="bnav-label">วัตถุดิบ</span>
-  </button>
-  <button class="bnav-btn" id="onav-menu" onclick="showOwnerTab('menu')">
-    <div class="bnav-icon">🍽️</div><span class="bnav-label">เมนู</span>
-  </button>
+<button class="bnav-btn active" id="onav-dashboard" onclick="showOwnerTab('dashboard')">
+<div class="bnav-icon">📊</div><span class="bnav-label">แดชบอร์ด</span>
+</button>
+<button class="bnav-btn" id="onav-stock" onclick="showOwnerTab('stock')">
+<div class="bnav-icon">📦</div><span class="bnav-label">วัตถุดิบ</span>
+</button>
+<button class="bnav-btn" id="onav-menu" onclick="showOwnerTab('menu')">
+<div class="bnav-icon">🍽️</div><span class="bnav-label">เมนู</span>
+</button>
 </div>
-
 <!-- FIREBASE + SCRIPTS -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
@@ -1289,5 +1039,6 @@ window.toggleMenuAvail=async function(id){
 // ── INIT ──
 init();
 </script>
+
 </body>
 </html>
