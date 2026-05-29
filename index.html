@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BEE POS v12 — บังหมัด</title>
+<title>BEE POS v13 — บังหมัด</title>
 <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -560,6 +560,69 @@ const ROLE_LABELS = {
 const LINE_TOKEN = "5M4pRwiwdalD8rCXq7li3W92WsmHiqaTrWhxk4EwO98Y8eOqxz51/SAX4TgvHzgMkvQxuCXR2FCXhLRa26txYKadIWTwacfdFjqfXp0q455qu0LwRWW3+V2YgJG3jJw0RoudjOqihKq/jFl9feeMugdB04t89/1O/w1cDnyilFU=";
 const LINE_USER_ID = "Uc644dc39e540e247034c646d19f14907";
 
+async function sendLineMessage(text) {
+  try {
+    const PROXY = 'https://corsproxy.io/?url=';
+    const LINE_API = encodeURIComponent('https://api.line.me/v2/bot/message/push');
+    const res = await fetch(PROXY + LINE_API, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${LINE_TOKEN}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        to: LINE_USER_ID,
+        messages: [{ type: 'text', text: text }]
+      })
+    });
+    return res.ok;
+  } catch(e) {
+    console.warn('LINE 알림 실패:', e);
+    return false;
+  }
+}
+
+async function sendDailyReport() {
+  const btn = document.querySelector('.report-btn');
+  if(btn) { btn.textContent = '📤 ส่ง...'; btn.disabled = true; }
+  try {
+    const today = new Date().toISOString().slice(0,10);
+    const snap = await get(ref(db, 'bangmad/orders'));
+    const orders = snap.val() || {};
+    const todayOrders = Object.values(orders).filter(o => o.time && o.time.startsWith(today));
+    const total = todayOrders.reduce((s,o) => s + (o.total||0), 0);
+    const cash = todayOrders.filter(o=>o.payType==='cash').reduce((s,o)=>s+(o.total||0),0);
+    const qr   = todayOrders.filter(o=>o.payType==='qr').reduce((s,o)=>s+(o.total||0),0);
+    const dine = todayOrders.filter(o=>o.type==='dine').length;
+    const delivery = todayOrders.filter(o=>o.type==='delivery').length;
+    const pickup = todayOrders.filter(o=>o.type==='pickup').length;
+    const thaiDate = new Date().toLocaleDateString('th-TH',{year:'numeric',month:'long',day:'numeric'});
+    const msg = `📊 รายงานประจำวัน — บังหมัด
+${thaiDate}
+
+` +
+      `📦 ออเดอร์ทั้งหมด: ${todayOrders.length} รายการ
+` +
+      `🪑 ที่ร้าน: ${dine}  🛵 ส่ง: ${delivery}  🛍️ รับเอง: ${pickup}
+
+` +
+      `💰 ยอดรวม: ฿${total.toFixed(0)}
+` +
+      `   💵 เงินสด: ฿${cash.toFixed(0)}
+` +
+      `   📱 QR: ฿${qr.toFixed(0)}
+
+` +
+      `✅ ส่งจากระบบ BEE POS อัตโนมัติ`;
+    const ok = await sendLineMessage(msg);
+    if(btn) { btn.textContent = ok ? '✅ ส่งแล้ว!' : '⚠️ ส่งไม่ได้'; btn.disabled = false; }
+    setTimeout(()=>{ if(btn){ btn.textContent='📊 ส่งรายงานไป Line'; btn.disabled=false; } }, 3000);
+  } catch(e) {
+    if(btn) { btn.textContent = '⚠️ Error'; btn.disabled = false; }
+    setTimeout(()=>{ if(btn){ btn.textContent='📊 ส่งรายงานไป Line'; btn.disabled=false; } }, 3000);
+  }
+}
+
 // ── DEFAULT MENU ──
 const defaultMenu = [
   {id:'s1',cat:'stir',emoji:'🌿',name:'Basil Stir Fry',th:'ผัดกะเพรา',opt:'ไก่สับ/ไก่กรอบ/ไก่เชียง',price:50,badge:'pop',stock:null},
@@ -846,6 +909,17 @@ window.orderDone=async function(amount,payType='qr'){
     await set(ref(db,`bangmad/cash/${today}`), cashData);
     await set(ref(db,'bangmad/menu'), menu);
   }catch(e){}
+  // ── LINE 주문 알림 ──
+  try {
+    const typeLabel = orderData.type==='dine'?'🪑 ที่ร้าน':orderData.type==='delivery'?'🛵 ส่งบ้าน':'🛍️ รับเอง';
+    const payLabel  = orderData.payType==='qr'?'📱 QR':'💵 เงินสด';
+    const itemLines = orderData.items.map(i=>`  • ${i.emoji||'🍽️'} ${i.th} × ${i.qty}`).join('\n');
+    const nameInfo  = orderData.name ? `\n👤 ${orderData.name}${orderData.phone?' ('+orderData.phone+')':''}` : '';
+    const addrInfo  = orderData.addr ? `\n📍 ${orderData.addr}` : '';
+    const t = new Date().toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
+    const msg = `🔔 ออเดอร์ใหม่! [${t}]\n${typeLabel} | ${payLabel}\n\n${itemLines}\n\n💰 รวม ฿${orderData.total.toFixed(0)}${nameInfo}${addrInfo}`;
+    sendLineMessage(msg); // fire-and-forget
+  } catch(e) {}
   cart={};updBar();renderCustomerMenu();
   document.getElementById('order-overlay').classList.remove('open');
   alert('✅ ขอบคุณ! ร้านได้รับคำสั่งซื้อแล้ว\n🍽️ เราจะเตรียมให้เร็วๆ นี้');
